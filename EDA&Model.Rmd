@@ -1,0 +1,86 @@
+---
+title: "EDA & Model"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+```{r}
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(quantreg)
+```
+
+```{r}
+data <- read.csv("Heart_Disease_Prediction.csv")
+str(data)
+
+```
+
+```{r}
+
+
+df <- data %>% 
+  mutate(Sex = ifelse(Sex == 1, "Male",  "Female")) %>% 
+  mutate(Exercise.angina = ifelse(Exercise.angina == 1, "Yes",  "No")) %>% 
+  mutate(FBS.over.120 = ifelse(FBS.over.120 == 1, "Yes",  "No")) %>% 
+  mutate(EKG.results = recode(EKG.results, 
+                                  "0" = "Normal", 
+                                  "1" = "Abnormal", 
+                                  "2" = "Severe")) %>% 
+  mutate(Chest.pain.type = recode(Chest.pain.type, 
+                                  "1" = "Typical Angina", 
+                                  "2" = "Abnormal Angina", 
+                                  "3" = "Non-Aginal Pain",
+                                  "4" = "Asymptomatic")) %>% 
+  mutate(Slope.of.ST = recode(Slope.of.ST, 
+                                  "1" = "Up", 
+                                  "2" = "Flat", 
+                                  "3" = "Down")) %>% 
+  mutate(Thallium = recode(Thallium, 
+                                  "3" = "Normal", 
+                                  "6" = "Fixed", 
+                                  "7" = "Reversed")) %>% 
+  mutate(Heart.Disease = ifelse(Heart.Disease == "Presence", 1, 0)) %>% 
+  mutate_all(as.factor)
+
+
+```
+
+```{r}
+set.seed(123)
+train <- df %>% sample_frac(0.7)
+test <- anti_join(df, train, by = "index")
+
+train
+test
+```
+
+```{r}
+model <- logit(formula = Heart.Disease ~ Age + Cholesterol, data = train)
+
+
+```
+
+```{r}
+str(train)
+```
+
+
+
+```{r}
+any(is.infinite(train$Age))
+any(is.infinite(train$Cholesterol))
+```
+
+
+
+
+
