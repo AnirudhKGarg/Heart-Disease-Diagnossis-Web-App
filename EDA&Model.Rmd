@@ -21,14 +21,14 @@ library(pROC)
 ```
 
 ```{r}
+#import the csv and check the structure
 data <- read.csv("Heart_Disease_Prediction.csv")
 str(data)
 
 ```
 
 ```{r}
-
-
+#modify the data and clean the fields for ease of reading and interpretation
 df <- data %>% 
   mutate(Sex = ifelse(Sex == 1, "Male",  "Female")) %>% 
   mutate(Exercise.angina = ifelse(Exercise.angina == 1, "Yes",  "No")) %>% 
@@ -56,6 +56,7 @@ df <- data %>%
 ```
 
 ```{r}
+#set random seed and sample out raining and testing data
 set.seed(123)
 train <- df %>% sample_frac(0.7)
 test <- anti_join(df, train, by = "index")
@@ -65,15 +66,13 @@ test
 ```
 
 ```{r}
-
+#Build our logistic regression model 
 model <- glm(formula = Heart.Disease ~ Age + Cholesterol + BP + Max.HR + ST.depression + Sex, data = train, family = binomial, contrasts = list(Sex = contr.treatment))
 model
 
 ```
 
 ```{r}
-
-
 # Generate predicted probabilities for the test set using the trained model
 prob_test <- predict(model, newdata = test, type = "response")
 
