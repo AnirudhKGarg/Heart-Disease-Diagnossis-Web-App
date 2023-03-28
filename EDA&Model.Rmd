@@ -15,7 +15,9 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 library(dplyr)
 library(tidyverse)
 library(ggplot2)
-library(quantreg)
+# Load the pROC package
+library(pROC)
+
 ```
 
 ```{r}
@@ -48,8 +50,7 @@ df <- data %>%
                                   "3" = "Normal", 
                                   "6" = "Fixed", 
                                   "7" = "Reversed")) %>% 
-  mutate(Heart.Disease = ifelse(Heart.Disease == "Presence", 1, 0)) %>% 
-  mutate_all(as.factor)
+  mutate(Heart.Disease = ifelse(Heart.Disease == "Presence", 1, 0)) 
 
 
 ```
@@ -64,20 +65,31 @@ test
 ```
 
 ```{r}
-model <- logit(formula = Heart.Disease ~ Age + Cholesterol, data = train)
 
+model <- glm(formula = Heart.Disease ~ Age + Cholesterol + BP + Max.HR + ST.depression + Sex, data = train, family = binomial, contrasts = list(Sex = contr.treatment))
+model
 
 ```
 
 ```{r}
-str(train)
-```
 
 
+# Generate predicted probabilities for the test set using the trained model
+prob_test <- predict(model, newdata = test, type = "response")
 
-```{r}
-any(is.infinite(train$Age))
-any(is.infinite(train$Cholesterol))
+# Compute the AUC-ROC for the model's predictions on the test set
+roc_test <- roc(test$Heart.Disease, prob_test)
+roc_test
+
+# Plot the ROC curve
+plot(roc_test)
+
+# Convert predicted probabilities to predicted binary labels using a threshold of 0.95
+pred_test <- ifelse(prob_test >= 0.95, 1, 0)
+
+# Compute the accuracy for the model's predictions on the test set
+acc_test <- mean(pred_test == test$Heart.Disease)
+
 ```
 
 
