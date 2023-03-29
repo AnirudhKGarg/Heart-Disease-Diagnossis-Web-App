@@ -25,4 +25,4 @@ Degrees of Freedom: 188 Total (i.e. Null);  182 Residual
 Null Deviance:	    258.7 
 Residual Deviance: 155.1 	AIC: 169.1
 
-This can be interpreted as a baseline risk of 2.5% with an increase of 1.2% for every 1 year increase in age, 1.3% for every 1 mg/L of increase in cholesterol, 3.6% for every 1 point increase in blood pressure, -5.1% every 1 point increase in resting heart rate, and a 62% for a 1 point absolute increase in stent depression. Men are 9.6x more likely to be at risk (ceteris paribus) compared to women.
+This can be interpreted as a baseline risk of 2.5% with an increase of 1.2% for every 1 year increase in age, 1.3% for every 1 mg/L of increase in cholesterol, 3.6% for every 1 point increase in blood pressure, -5.1% every 1 point increase in max heart rate, and a 62% for a 1 point absolute increase in stent depression. Men are 9.6x more likely to be at risk (ceteris paribus) compared to women.
