@@ -6,7 +6,7 @@ This is the link: https://9uqjcw-anirudh-garg.shinyapps.io/Heart-Disease-Predict
 
 # Disclaimer 
 
-Warning, this is not medical advice. It is a simple model made by a data scientist, not a doctor. Ask your deoctor regarding your risks as they vary person to person. 
+Warning, this is not medical advice. It is a simple model made by a data scientist, not a doctor. Ask your doctor regarding your risks as they vary person to person. 
 
 # Data
 This data set dates from 1988 and consists of four databases: Cleveland, Hungary, Switzerland, and Long Beach V. It contains 76 attributes, including the predicted attribute, but all published experiments refer to using a subset of 14 of them. The "target" field refers to the presence of heart disease in the patient. It is integer valued 0 = no disease and 1 = disease.
