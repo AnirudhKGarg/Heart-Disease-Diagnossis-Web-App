@@ -47,9 +47,9 @@ ui <- fluidPage(
             verbatimTextOutput("prediction"),
             plotlyOutput("importance_chart"),
             h3("Model Interpretation"),
-            helpText("This model predicts the risk of heart disease based on several factors including age, cholesterol levels, maximum heart rate, blood pressure, and stent depression. Predictions are made at the 95% confidence interval and is not medical advice. Ask your doctor if you have concerns of developing heart disease."),
+            helpText("This model predicts the risk of heart disease based on several factors including age, cholesterol levels, maximum heart rate, blood pressure, and stent depression. Predictions are made at the 95% confidence interval and does not constitute medical advice. Ask your doctor if you have concerns of developing heart disease."),
             h3("Study Limitations"),
-            helpText("It's important to note that many studies on heart disease historically focused more on men than women. While the UCI dataset used to train the mode is more representative of heart disease patients, medical bias may affect the accuracy of predictions for women and highlights the need for further inclusive research.")
+            helpText("It's important to note that many studies on heart disease historically focused more on men than women. As such, this model does not include biological sex as a variable. While the UCI dataset used to train the mode is more representative of heart disease patients, medical bias may affect the accuracy of predictions for women and highlights the need for further inclusive research.")
         )
     )
 )
