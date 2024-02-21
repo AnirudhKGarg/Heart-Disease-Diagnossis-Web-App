@@ -46,8 +46,10 @@ ui <- fluidPage(
         mainPanel(
             verbatimTextOutput("prediction"),
             plotlyOutput("importance_chart"),
-            helpText("Model Interpretation: This model predicts the risk of heart disease based on several factors including age, cholesterol levels, maximum heart rate, blood pressure, and stent depression. Remember, this is a predictive model and should not replace medical advice."),
-            helpText("Study Limitations: It's important to note that many studies on heart disease historically focused more on men than women. This bias may affect the accuracy of predictions for women and highlights the need for more inclusive research.")
+            h3("Model Interpretation"),
+            helpText("This model predicts the risk of heart disease based on several factors including age, cholesterol levels, maximum heart rate, blood pressure, and stent depression. Predictions are made at the 95% confidence interval."),
+            h3("Study Limitations"),
+            helpText("It's important to note that many studies on heart disease historically focused more on men than women. while the UCI dataset is more representative of Heart Disease patients, this bias may affect the accuracy of predictions for women and highlights the need for further inclusive research.")
         )
     )
 )
@@ -78,7 +80,7 @@ server <- function(input, output) {
     # Render the model prediction
     output$prediction <- renderPrint({
         prob <- predict_disease(input$Age, input$Cholesterol, input$Max.HR, input$BP, input$ST.depression)
-        paste0("Risk of Heart Disease: ", round(prob * 100, 2), "%")
+        paste0("Risk of Developing Heart Disease: ", round(prob * 100, 2), "%")
     })
     
     # Render the donut chart for variable importance
