@@ -10,7 +10,10 @@ Warning, this is not medical advice. It is a simple model made by a data scienti
 
 # Data
 This data set dates from 1988 and consists of four databases: Cleveland, Hungary, Switzerland, and Long Beach V. It contains 76 attributes, including the predicted attribute, but all published experiments refer to using a subset of 14 of them. The "target" field refers to the presence of heart disease in the patient. It is integer valued 0 = no disease and 1 = disease.
-link: https://archive.ics.uci.edu/ml/datasets/heart+disease
+
+# Resources
+UCI Dataset: https://archive.ics.uci.edu/ml/datasets/heart+disease
+Research: Detrano, Robert C. et al. “International application of a new probability algorithm for the diagnosis of coronary artery disease.” The American journal of cardiology 64 5 (1989): 304-10 .
 
 # Model
 
